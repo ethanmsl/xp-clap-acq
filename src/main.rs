@@ -26,5 +26,11 @@ fn main() -> Result<()> {
     if !matchfound {
         println!("No match found");
     }
+
+    // // timing results are not what I expected
+    // // (Granted, this is not best practice benchmarking I imagine)
+    // let timings = clap_acq::compare().unwrap();
+    // println!("timings: {:?}", timings);
+
     Ok(())
 }
