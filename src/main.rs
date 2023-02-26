@@ -10,14 +10,12 @@ fn main() {
     let file = File::open(&args.path).expect("could not open file");
     let reader = BufReader::new(file);
     // let content = std::fs::read_to_string(&args.path).expect("could not read string");
-    // let what = reader.lines();
 
     println!("Pattern: {}", args.pattern);
     println!("Path: {}", args.path.display());
 
-    let mut matchfound = false;
-
     println!("\nSearching for matches...:");
+    let mut matchfound = false;
     for line in reader.lines() {
         if line.as_ref().unwrap().contains(&args.pattern) {
             matchfound = true;
