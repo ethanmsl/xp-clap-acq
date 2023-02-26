@@ -1,4 +1,8 @@
 //! executable code for a clap / cli learning tutorial
+//! # Example Run Code:
+//! ```bash
+//! cargo run --quiet -- real ./files/input.txt
+//! ```
 
 use anyhow::{Context, Result};
 use clap::Parser;
