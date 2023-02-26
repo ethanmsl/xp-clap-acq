@@ -3,6 +3,8 @@
 use clap::Parser;
 
 #[derive(Parser)]
+/// CLI Argument Struct\n
+/// Automatically derived into parsing structs by clap
 struct Cli {
     ///Pattern to look for
     pattern: String,
