@@ -21,13 +21,13 @@
 use std::io::{self, Write};
 use std::time::Instant;
 
-fn writebuf_example(num: i32) -> anyhow::Result<()> {
+fn writebuf_example(num: u64) -> anyhow::Result<()> {
     let stdout = io::stdout();
     let mut handle = io::BufWriter::new(stdout);
     writeln!(handle, "foo: {}", num)?;
     Ok(())
 }
-fn getlock_example(num: i32) -> anyhow::Result<()> {
+fn getlock_example(num: u64) -> anyhow::Result<()> {
     let stdout = io::stdout();
     let mut handle = stdout.lock();
     writeln!(handle, "foo: {}", num)?;
@@ -43,23 +43,24 @@ fn getlock_example(num: i32) -> anyhow::Result<()> {
 /// doesn't apply as clearly as I'd think due to compilation & optimization
 /// , still, I'm surprised.
 /// Something to perhaps look at another time with better benchmarking
+// looking at ProgressBar
 pub fn compare() -> anyhow::Result<(u32, u32, u32)> {
     let now = Instant::now();
-    for i in 0..1000000 {
+    for i in 0..1_000_000 {
         writebuf_example(i)?;
     }
     let new_now = Instant::now();
     let timing_1 = new_now.duration_since(now).as_millis();
 
     let now = Instant::now();
-    for i in 0..1000000 {
+    for i in 0..1_000_000 {
         getlock_example(i)?;
     }
     let new_now = Instant::now();
     let timing_2 = new_now.duration_since(now).as_millis();
 
     let now = Instant::now();
-    for i in 0..1000000 {
+    for i in 0..1_000_000 {
         println!("foo: {}", i);
     }
     let new_now = Instant::now();
