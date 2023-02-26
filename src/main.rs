@@ -31,6 +31,15 @@ fn main() -> Result<()> {
         println!("No match found");
     }
 
+    // // looking at ProgressBar
+    // let pb = indicatif::ProgressBar::new(100);
+    // for i in 0..100 {
+    //     std::thread::sleep(std::time::Duration::from_millis(100));
+    //     pb.set_position(i);
+    //     pb.println(format!("[+] finished #{}", i));
+    //     pb.inc(1);
+    // }
+
     // // timing results are not what I expected
     // // (Granted, this is not best practice benchmarking I imagine)
     // let timings = clap_acq::printtiming::compare().unwrap();
