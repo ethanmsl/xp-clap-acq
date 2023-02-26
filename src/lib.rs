@@ -1,5 +1,9 @@
 use clap::Parser;
 
+////////////////////////////////////
+// Arguments Object
+//
+
 #[derive(Parser)]
 /// CLI Argument Struct
 /// Automatically derived into parsing structs by clap
@@ -10,7 +14,28 @@ pub struct CliArgs {
     pub path: std::path::PathBuf,
 }
 
+////////////////////////////////////
+// Fast writing approaches
+//
+
+use std::io::{self, Write};
+pub fn writebuf_example() -> anyhow::Result<()> {
+    let stdout = io::stdout();
+    let mut handle = io::BufWriter::new(stdout);
+    writeln!(handle, "using writebuffer: {}", 42)?;
+    Ok(())
+}
+pub fn getlock_example() -> anyhow::Result<()> {
+    let stdout = io::stdout();
+    let mut handle = stdout.lock();
+    writeln!(handle, "got lock manually: {}", 42)?;
+    Ok(())
+}
+
 /////////////////////////////////////
+// example code
+//
+
 pub fn add(left: usize, right: usize) -> usize {
     left + right
 }
