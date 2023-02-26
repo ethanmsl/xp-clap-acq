@@ -1,15 +1,16 @@
 //! executable code for a clap / cli learning tutorial
 
+use anyhow::{Context, Result};
 use clap::Parser;
 use clap_acq::CliArgs;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-fn main() {
+fn main() -> Result<()> {
     let args = CliArgs::parse();
-    let file = File::open(&args.path).expect("could not open file");
+    let file = File::open(&args.path)
+        .with_context(|| format!("could not open file: {}", args.path.display()))?;
     let reader = BufReader::new(file);
-    // let content = std::fs::read_to_string(&args.path).expect("could not read string");
 
     println!("Pattern: {}", args.pattern);
     println!("Path: {}", args.path.display());
@@ -25,4 +26,5 @@ fn main() {
     if !matchfound {
         println!("No match found");
     }
+    Ok(())
 }
