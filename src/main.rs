@@ -3,7 +3,7 @@
 use clap::Parser;
 
 #[derive(Parser)]
-struct CLI {
+struct Cli {
     ///Pattern to look for
     pattern: String,
     ///path to file; for reading
@@ -11,8 +11,7 @@ struct CLI {
 }
 
 fn main() {
-
-    let args = CLI::parse();
+    let args = Cli::parse();
 
     println!("Pattern: {}", args.pattern);
     println!("Path: {}", args.path.display());
