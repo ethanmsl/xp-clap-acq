@@ -33,7 +33,7 @@ fn main() -> Result<()> {
 
     // // timing results are not what I expected
     // // (Granted, this is not best practice benchmarking I imagine)
-    // let timings = clap_acq::compare().unwrap();
+    // let timings = clap_acq::printtiming::compare().unwrap();
     // println!("timings: {:?}", timings);
 
     Ok(())
