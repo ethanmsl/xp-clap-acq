@@ -21,16 +21,16 @@
 use std::io::{self, Write};
 use std::time::Instant;
 
-fn writebuf_example() -> anyhow::Result<()> {
+fn writebuf_example(num: i32) -> anyhow::Result<()> {
     let stdout = io::stdout();
     let mut handle = io::BufWriter::new(stdout);
-    writeln!(handle, "foo: {}", 42)?;
+    writeln!(handle, "foo: {}", num)?;
     Ok(())
 }
-fn getlock_example() -> anyhow::Result<()> {
+fn getlock_example(num: i32) -> anyhow::Result<()> {
     let stdout = io::stdout();
     let mut handle = stdout.lock();
-    writeln!(handle, "foo: {}", 42)?;
+    writeln!(handle, "foo: {}", num)?;
     Ok(())
 }
 
@@ -45,22 +45,22 @@ fn getlock_example() -> anyhow::Result<()> {
 /// Something to perhaps look at another time with better benchmarking
 pub fn compare() -> anyhow::Result<(u32, u32, u32)> {
     let now = Instant::now();
-    for _ in 0..1000000 {
-        writebuf_example()?;
+    for i in 0..1000000 {
+        writebuf_example(i)?;
     }
     let new_now = Instant::now();
     let timing_1 = new_now.duration_since(now).as_millis();
 
     let now = Instant::now();
-    for _ in 0..1000000 {
-        getlock_example()?;
+    for i in 0..1000000 {
+        getlock_example(i)?;
     }
     let new_now = Instant::now();
     let timing_2 = new_now.duration_since(now).as_millis();
 
     let now = Instant::now();
-    for _ in 0..1000000 {
-        println!("foo: {}", 42);
+    for i in 0..1000000 {
+        println!("foo: {}", i);
     }
     let new_now = Instant::now();
     let timing_3 = new_now.duration_since(now).as_millis();
