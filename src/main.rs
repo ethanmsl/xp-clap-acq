@@ -24,7 +24,10 @@ fn main() -> Result<()> {
     for line in reader.lines() {
         if line.as_ref().unwrap().contains(&args.pattern) {
             matchfound = true;
-            println!("{:?}", line);
+            println!(
+                "{:?}",
+                line.expect("could not unwrap 'line', despite containg a value")
+            );
         }
     }
     if !matchfound {
