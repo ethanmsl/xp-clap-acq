@@ -1,21 +1,27 @@
 //! executable code for a clap / cli learning tutorial
 //! # Example Run Code:
 //! ```bash
-//! cargo run --quiet -- real ./files/input.txt
+//! RUST_LOG=info cargo run --quiet -- real ./files/input.txt
 //! ```
 
 use anyhow::{Context, Result};
 use clap::Parser;
 use clap_acq::CliArgs;
+use log::info;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() -> Result<()> {
+    env_logger::init();
+    info!("Starting up");
+
     let args = CliArgs::parse();
     let file = File::open(&args.path)
         .with_context(|| format!("could not open file: {}", args.path.display()))?;
     let reader = BufReader::new(file);
 
+    info!("Pattern: {}", args.pattern);
+    info!("Path: {}", args.path.display());
     println!("Pattern: {}", args.pattern);
     println!("Path: {}", args.path.display());
 
