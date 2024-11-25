@@ -25,6 +25,6 @@ allow_attributes = "warn"
 [dependencies]
 anyhow = "1.0.69"
 clap = { version = "4.1.6", features = ["derive"] }
-env_logger = "0.10.0"
+env_logger = "0.11.5"
 indicatif = "0.17.3"
 log = "0.4.17"
