@@ -6,8 +6,9 @@ pub mod printtiming;
 //
 
 #[derive(Parser)]
-/// CLI Argument Struct
-/// Automatically derived into parsing structs by clap
+// CLI Argument Struct
+// Automatically derived into parsing structs by clap
+/// Takes a given literal pattern and searches a given file location for it.
 pub struct CliArgs {
     ///Pattern to look for
     pub pattern: String,

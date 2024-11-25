@@ -6,7 +6,7 @@
 
 use anyhow::{Context, Result};
 use clap::Parser;
-use clap_acq::CliArgs;
+use clap_acq::CliArgs; //`clap_acq` is the name of this crate('s library)
 use log::info;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
