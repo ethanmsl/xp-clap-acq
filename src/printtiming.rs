@@ -18,20 +18,20 @@
 // Fast writing approaches
 //
 
-use std::io::{self, Write};
-use std::time::Instant;
+use std::{io::{self, Write},
+          time::Instant};
 
 fn writebuf_example(num: u64) -> anyhow::Result<()> {
-    let stdout = io::stdout();
-    let mut handle = io::BufWriter::new(stdout);
-    writeln!(handle, "foo: {}", num)?;
-    Ok(())
+        let stdout = io::stdout();
+        let mut handle = io::BufWriter::new(stdout);
+        writeln!(handle, "foo: {}", num)?;
+        Ok(())
 }
 fn getlock_example(num: u64) -> anyhow::Result<()> {
-    let stdout = io::stdout();
-    let mut handle = stdout.lock();
-    writeln!(handle, "foo: {}", num)?;
-    Ok(())
+        let stdout = io::stdout();
+        let mut handle = stdout.lock();
+        writeln!(handle, "foo: {}", num)?;
+        Ok(())
 }
 
 /// Comparing writebuffer writing, manual lock acquisition, and raw println'ing
@@ -45,26 +45,26 @@ fn getlock_example(num: u64) -> anyhow::Result<()> {
 /// Something to perhaps look at another time with better benchmarking
 // looking at ProgressBar
 pub fn compare() -> anyhow::Result<(u32, u32, u32)> {
-    let now = Instant::now();
-    for i in 0..1_000_000 {
-        writebuf_example(i)?;
-    }
-    let new_now = Instant::now();
-    let timing_1 = new_now.duration_since(now).as_millis();
+        let now = Instant::now();
+        for i in 0..1_000_000 {
+                writebuf_example(i)?;
+        }
+        let new_now = Instant::now();
+        let timing_1 = new_now.duration_since(now).as_millis();
 
-    let now = Instant::now();
-    for i in 0..1_000_000 {
-        getlock_example(i)?;
-    }
-    let new_now = Instant::now();
-    let timing_2 = new_now.duration_since(now).as_millis();
+        let now = Instant::now();
+        for i in 0..1_000_000 {
+                getlock_example(i)?;
+        }
+        let new_now = Instant::now();
+        let timing_2 = new_now.duration_since(now).as_millis();
 
-    let now = Instant::now();
-    for i in 0..1_000_000 {
-        println!("foo: {}", i);
-    }
-    let new_now = Instant::now();
-    let timing_3 = new_now.duration_since(now).as_millis();
+        let now = Instant::now();
+        for i in 0..1_000_000 {
+                println!("foo: {}", i);
+        }
+        let new_now = Instant::now();
+        let timing_3 = new_now.duration_since(now).as_millis();
 
-    Ok((timing_1 as u32, timing_2 as u32, timing_3 as u32))
+        Ok((timing_1 as u32, timing_2 as u32, timing_3 as u32))
 }
