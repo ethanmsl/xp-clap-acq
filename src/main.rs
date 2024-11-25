@@ -30,7 +30,7 @@ fn main() -> Result<()> {
         for line in reader.lines() {
                 if line.as_ref().unwrap().contains(&args.pattern) {
                         matchfound = true;
-                        println!("{:?}", line.expect("could not unwrap 'line', despite containg a value"));
+                        println!("{:?}", line.expect("could not unwrap 'line', despite containing a value"));
                 }
         }
         if !matchfound {
