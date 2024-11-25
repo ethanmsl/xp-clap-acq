@@ -2,6 +2,16 @@
 name = "clap-acq"
 version = "0.1.0"
 edition = "2021"
+authors = ["Ethan Skowronski-Lutz"]
+description = "playing with command line rust"
+homepage = "https://github.com/ethanmsl/xp-clap-acq"
+documentation = "https://github.com/ethanmsl/xp-clap-acq"
+repository = "https://github.com/ethanmsl/xp-clap-acq"
+keywords = ["terminal", "cli", "command-line", "rust", "clap"]
+# publish = []
+# license = ""
+# license-file = ""
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
